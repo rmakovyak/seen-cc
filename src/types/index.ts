@@ -14,6 +14,12 @@ export enum TransactionStatus {
   RETURNED = 'RETURNED'
 }
 
+export enum RelationType {
+  DEVICE = 'DEVICE',
+  P2P_SEND = 'P2P_SEND',
+  P2P_RECEIVE = 'P2P_RECEIVE'
+}
+
 export type Metadata = {
   relatedTransactionId?: number;
   deviceId?: string;
@@ -39,4 +45,9 @@ export type Timeline = Array<{
 
 export type AggregatedTransaction = Transaction & {
   timeline: Timeline;
+};
+
+export type CustomerRelation = {
+  relatedCustomerId: number;
+  relationType: RelationType;
 };

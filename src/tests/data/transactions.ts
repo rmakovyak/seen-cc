@@ -189,3 +189,97 @@ export const transactionsSample: Transaction[] = [
     }
   }
 ];
+
+export const transactionsRelationsSample: Transaction[] = [
+  {
+    transactionId: 12,
+    authorizationCode: 'F20005',
+    transactionDate: '2022-09-04T06:30:00+00:00',
+    customerId: 2,
+    transactionType: TransactionType.FEE,
+    transactionStatus: TransactionStatus.SETTLED,
+    description: 'Fee for Outgoing Wire',
+    amount: -5,
+    metadata: {}
+  },
+  {
+    transactionId: 15,
+    authorizationCode: 'F10007',
+    transactionDate: '2022-09-06T11:05:00+00:00',
+    customerId: 3,
+    transactionType: TransactionType.P2P_SEND,
+    transactionStatus: TransactionStatus.SETTLED,
+    description: 'Transfer to Adam',
+    amount: -10000,
+    metadata: {
+      relatedTransactionId: 16,
+      deviceId: 'F210200'
+    }
+  },
+  {
+    transactionId: 17,
+    authorizationCode: 'F10008',
+    transactionDate: '2022-09-06T13:05:00+00:00',
+    customerId: 4,
+    transactionType: TransactionType.P2P_RECEIVE,
+    transactionStatus: TransactionStatus.SETTLED,
+    description: 'Transfer to Weoy',
+    amount: -10000,
+    metadata: {
+      relatedTransactionId: 18,
+      deviceId: 'F210200'
+    }
+  },
+  {
+    transactionId: 25,
+    authorizationCode: 'F10012',
+    transactionDate: '2022-09-11T06:30:00+00:00',
+    customerId: 5,
+    transactionType: TransactionType.P2P_RECEIVE,
+    transactionStatus: TransactionStatus.SETTLED,
+    description: 'Transfer to Citibank',
+    amount: 12995,
+    metadata: {
+      deviceId: 'F210200'
+    }
+  },
+  {
+    transactionId: 18,
+    authorizationCode: 'F10008',
+    transactionDate: '2022-09-06T13:05:00+00:00',
+    customerId: 5,
+    transactionType: TransactionType.P2P_RECEIVE,
+    transactionStatus: TransactionStatus.SETTLED,
+    description: 'Transfer from Adam',
+    amount: 10000,
+    metadata: {
+      relatedTransactionId: 17
+    }
+  },
+  {
+    transactionId: 16,
+    authorizationCode: 'F10007',
+    transactionDate: '2022-09-06T11:05:00+00:00',
+    customerId: 4,
+    transactionType: TransactionType.P2P_RECEIVE,
+    transactionStatus: TransactionStatus.SETTLED,
+    description: 'Transfer from Frederik',
+    amount: 10000,
+    metadata: {
+      relatedTransactionId: 15
+    }
+  },
+  {
+    transactionId: 16,
+    authorizationCode: 'F10007',
+    transactionDate: '2022-09-06T11:05:00+00:00',
+    customerId: 4,
+    transactionType: TransactionType.P2P_RECEIVE,
+    transactionStatus: TransactionStatus.SETTLED,
+    description: 'Transfer from Unknown User',
+    amount: 10000,
+    metadata: {
+      relatedTransactionId: 20
+    }
+  }
+];
