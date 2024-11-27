@@ -43,8 +43,9 @@ I only used tools that satisfies current requirements. There are a lot of things
 ### Assumptions
 
 - I assumed that json data with transactions is not static and has to be requested on the fly. Otherwise, lookup strategies will be different, utilizing maps.
+- I did not build further fraud signal detection, as it was not in the requirements. Happy to dive into it, if needed.
 
 ### Findings
 
-- Transactions 5 and 6 have different amounts, i assume it's not a bug or issue.
-- Transactions 33 and 34 have related transactions to 8 and 9, which are payments from Amazon. I assumed it's inconsistency in metadata and ignored this relation (let me know if i was wrong!)
+- Transactions 5 and 6 have different amounts, i assume it's not a bug or issue. Otherwise these transactions should be flagged.
+- Transactions 33 and 34 have related transactions to 8 and 9, which are payments from Amazon. I assumed it's inconsistency in metadata and ignored these relations (let me know if i was wrong!)
