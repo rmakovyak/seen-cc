@@ -5,6 +5,19 @@ import {
   TransactionType
 } from '../types';
 
+function isP2PCompatibleTypes(
+  type1: TransactionType,
+  type2: TransactionType
+): boolean {
+  if (type1 === TransactionType.P2P_SEND)
+    return type2 === TransactionType.P2P_RECEIVE;
+
+  if (type1 === TransactionType.P2P_RECEIVE)
+    return type2 === TransactionType.P2P_SEND;
+
+  return false;
+}
+
 export function findDeviceRelations(
   transactions: Transaction[],
   customerId: number
@@ -63,7 +76,10 @@ export function findP2PRelations(
       transaction.transactionId
     );
 
-    if (relatedTransactionType)
+    if (
+      relatedTransactionType &&
+      isP2PCompatibleTypes(transaction.transactionType, relatedTransactionType)
+    )
       relations.push({
         relatedCustomerId: transaction.customerId,
         relationType: relatedTransactionType
