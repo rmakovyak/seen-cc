@@ -44,9 +44,14 @@ export function getCustomerTransactions(
   const aggregatedTransactions = Object.values(transactionsCodeMap).map(
     (groupedTransactions) => {
       const sortedTransactions = groupedTransactions!.sort(sortByStatus);
+      const firstTransaction =
+        sortedTransactions[sortedTransactions.length - 1];
       const timeline = getTimeline(sortedTransactions);
       return {
         ...sortedTransactions[0],
+        transactionId: firstTransaction.transactionId,
+        updatedAt: sortedTransactions[0].transactionDate,
+        createdAt: firstTransaction.transactionDate,
         timeline: timeline
       };
     }

@@ -57,7 +57,7 @@ app.get('/v1/:customerId/relations', async (req, res) => {
     if (!process.env.TRANSACTIONS_API_URL)
       throw new Error('TRANSACTIONS_API_URL is not defined');
 
-    const response = await axios.get(process.env.TRANSACTIONS_API_URL + 123);
+    const response = await axios.get(process.env.TRANSACTIONS_API_URL);
 
     const transactions = getCustomerRelations(
       response.data,

@@ -44,6 +44,8 @@ export type Timeline = Array<{
 }>;
 
 export type AggregatedTransaction = Transaction & {
+  createdAt: string;
+  updatedAt: string;
   timeline: Timeline;
 };
 

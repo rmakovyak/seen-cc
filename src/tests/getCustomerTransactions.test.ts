@@ -62,6 +62,13 @@ describe('getCustomerTransactions', () => {
       1
     );
     expect(aggregatedTransactions).toHaveLength(4);
+    expect(aggregatedTransactions[0].transactionId).toBe(1);
+    expect(aggregatedTransactions[0].createdAt).toBe(
+      '2022-09-01T11:46:42+00:00'
+    );
+    expect(aggregatedTransactions[0].updatedAt).toBe(
+      '2022-09-03T15:41:42+00:00'
+    );
     expect(aggregatedTransactions[0].authorizationCode).toBe('F10000');
     expect(aggregatedTransactions[0].timeline).toHaveLength(2);
     expect(aggregatedTransactions[0].timeline[0].status).toBe('SETTLED');
