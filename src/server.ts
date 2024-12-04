@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import getCustomerTransactions from './helpers/getCustomerTransactions';
 import getCustomerRelations from './helpers/getCustomerRelations';
 import winston from 'winston';
+import groupTransactionsByDay from './helpers/groupTransactionsByDay';
 
 const logger = winston.createLogger({
   level: 'info',
@@ -44,6 +45,29 @@ app.get('/v1/:customerId/transactions', async (req, res) => {
     );
 
     res.json({ transactions });
+  } catch (error) {
+    logger.error((error as Error).message);
+    res.status(500).json({ error });
+  }
+});
+
+app.get('/v1/:customerId/transactions/daily', async (req, res) => {
+  const { customerId } = req.params;
+
+  try {
+    if (!process.env.TRANSACTIONS_API_URL)
+      throw new Error('TRANSACTIONS_API_URL is not defined');
+
+    const response = await axios.get(process.env.TRANSACTIONS_API_URL);
+
+    const transactions = getCustomerTransactions(
+      response.data,
+      Number(customerId)
+    );
+
+    const groupedByDayTransactions = groupTransactionsByDay(transactions);
+
+    res.json(groupedByDayTransactions);
   } catch (error) {
     logger.error((error as Error).message);
     res.status(500).json({ error });

@@ -53,3 +53,9 @@ export type CustomerRelation = {
   relatedCustomerId: number;
   relationType: RelationType;
 };
+
+export type GroupedByDay = {
+  date: string;
+  total: number;
+  transactions: AggregatedTransaction[];
+};

@@ -1,4 +1,4 @@
-import { Transaction } from '../../types';
+import { AggregatedTransaction, Transaction } from '../../types';
 import { TransactionType, TransactionStatus } from '../../types';
 
 export const transactionStatusesSample: Transaction[] = [
@@ -283,3 +283,112 @@ export const transactionsRelationsSample: Transaction[] = [
     }
   }
 ];
+
+export const aggregatedTransactionsSample = [
+  {
+    transactionId: 1,
+    authorizationCode: 'F10000',
+    transactionDate: '2022-09-03T15:41:42+00:00',
+    customerId: 1,
+    transactionType: 'ACH_INCOMING',
+    transactionStatus: 'SETTLED',
+    description: 'Deposit from Citibank',
+    amount: 5000,
+    metadata: {
+      relatedTransactionId: 1
+    },
+    updatedAt: '2022-09-03T15:41:42+00:00',
+    createdAt: '2022-09-01T11:46:42+00:00',
+    timeline: [
+      {
+        createdAt: '2022-09-03T15:41:42+00:00',
+        status: 'SETTLED',
+        amount: 5000
+      },
+      {
+        createdAt: '2022-09-01T11:46:42+00:00',
+        status: 'PENDING',
+        amount: 5000
+      }
+    ]
+  },
+  {
+    transactionId: 3,
+    authorizationCode: 'F10001',
+    transactionDate: '2022-09-10T15:41:42+00:00',
+    customerId: 1,
+    transactionType: 'POS',
+    transactionStatus: 'RETURNED',
+    description: 'Amazon',
+    amount: 143.21,
+    metadata: {
+      relatedTransactionId: 4
+    },
+    updatedAt: '2022-09-10T15:41:42+00:00',
+    createdAt: '2022-09-05T11:36:42+00:00',
+    timeline: [
+      {
+        createdAt: '2022-09-10T15:41:42+00:00',
+        status: 'RETURNED',
+        amount: 143.21
+      },
+      {
+        createdAt: '2022-09-06T15:41:42+00:00',
+        status: 'SETTLED',
+        amount: -143.21
+      },
+      {
+        createdAt: '2022-09-05T11:36:42+00:00',
+        status: 'PENDING',
+        amount: -143.21
+      }
+    ]
+  },
+  {
+    transactionId: 5,
+    authorizationCode: 'F10002',
+    transactionDate: '2022-09-08T10:00:30+00:00',
+    customerId: 1,
+    transactionType: 'POS',
+    transactionStatus: 'SETTLED',
+    description: 'Walmart',
+    amount: -90.99,
+    metadata: {
+      relatedTransactionId: 5
+    },
+    updatedAt: '2022-09-08T10:00:30+00:00',
+    createdAt: '2022-09-07T08:32:00+00:00',
+    timeline: [
+      {
+        createdAt: '2022-09-08T10:00:30+00:00',
+        status: 'SETTLED',
+        amount: -90.99
+      },
+      {
+        createdAt: '2022-09-07T08:32:00+00:00',
+        status: 'PENDING',
+        amount: -89.5
+      }
+    ]
+  },
+  {
+    transactionId: 7,
+    authorizationCode: 'F10003',
+    transactionDate: '2022-09-08T10:00:30+00:00',
+    customerId: 1,
+    transactionType: 'POS',
+    transactionStatus: 'SETTLED',
+    description: 'Steam',
+    amount: -50.21,
+    metadata: {},
+    updatedAt: '2022-09-08T10:00:30+00:00',
+    createdAt: '2022-09-08T10:00:30+00:00',
+    timeline: [
+      {
+        createdAt: '2022-09-08T10:00:30+00:00',
+        status: 'SETTLED',
+        amount: -50.21
+      }
+    ]
+  }
+] as unknown as AggregatedTransaction[];
